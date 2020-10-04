@@ -21,9 +21,9 @@ after_sucess:
 
 #take those image and push them to docker hub 
 
- - docker push tomasciudad/multi-client
- - docker push tomasciudad/multi-nginx
- - docker push tomasciudad/multi-server
- - docker push tomasciudad/multi-worker
+ - docker push soyyop/multi-client
+ - docker push soyyop/multi-nginx
+ - docker push soyyop/multi-server
+ - docker push soyyop/multi-worker
 
 
