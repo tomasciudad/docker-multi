@@ -1,0 +1,29 @@
+sudo: required
+services:
+ - docker
+
+
+before_install:
+ - docker build -t tomasciudad/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run tomasciudad/react-test npm test -- --coverage
+
+after_sucess:
+ - docker build -t tomasciudad/multi-client -f ./client
+ - docker build -t tomasciudad/multi-nginx -f ./nginx
+ - docker build -t tomasciudad/multi-server -f ./server
+ - docker build -t tomasciudad/multi-worker -f ./worker
+
+# log in to the docker CLI
+
+ - ECHO "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stddin
+
+#take those image and push them to docker hub 
+
+ - docker push tomasciudad/multi-client
+ - docker push tomasciudad/multi-nginx
+ - docker push tomasciudad/multi-server
+ - docker push tomasciudad/multi-worker
+
+
