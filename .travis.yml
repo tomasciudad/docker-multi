@@ -26,4 +26,15 @@ after_success:
  - docker push tomasciudad/multi-server
  - docker push tomasciudad/multi-worker
 
-
+deploy:
+ edge: true
+ provider: elasticbeanstalk
+ region: us-east-2
+ app: multi-docker
+ env: Multidocker-env
+ bucket_name: elasticbeanstalk-us-east-2-330285603597
+ bucker_path: docker-multi
+ on:
+  branch: master 
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key: $AWS_SECRET_KEY
