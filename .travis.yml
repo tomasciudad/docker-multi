@@ -9,7 +9,7 @@ before_install:
 script:
  - docker run -e CI=true  tomasciudad/react-test npm test
 
-after_sucess:
+after_success:
  - docker build -t tomasciudad/multi-client ./client
  - docker build -t tomasciudad/multi-nginx ./nginx
  - docker build -t tomasciudad/multi-server ./server
